@@ -1,6 +1,8 @@
 Pelican |build-status| |coverage-status|
 ========================================
 
+Yeah, this is a nice README, but we need some git commits, so let’s add something here.
+
 Pelican is a static site generator, written in Python_.
 
 * Write content in reStructuredText_ or Markdown_ using your editor of choice
