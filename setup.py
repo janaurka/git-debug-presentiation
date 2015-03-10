@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 from setuptools import setup
 
+
+# Attention: razorfish-not-known cannot be installed using pip or easy_install. You have to ensure it is present before running setup.py
 requires = ['feedgenerator >= 1.6', 'jinja2 >= 2.7', 'pygments', 'docutils',
             'pytz >= 0a', 'blinker', 'unidecode', 'six >= 1.4',
-            'python-dateutil']
+            'python-dateutil', 'razorfish-not-known']
 
 entry_points = {
     'console_scripts': [
