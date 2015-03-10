@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Advanced debugging with git
+## (or simply: git unfuck)
+
+---
+
+class: center, middle, .left
+
+# It’s all about:
+
+
+1. git bisect
+2. git blame
+3. git cherry-pick
+
+
+
+---
+
+# Pelican - our test project
+__(It’s actually a pretty neat Python powered static site generator with support for Markdown and reST)__
+
+## Done so far:
+
+1. Clone the repository from GitHub.
+2. Create a new branch to add features
+3. Break the code (since I want to show you have to find the fuckup)
+
+.center[![](git1.png)]
+
+
+
+---
+
+# git bisect - Indroducion
+
+## When to use?
+
+* When your build is not building anymore and you have no clue why
+
+## What does it?
+
+* git bisect can automatically crawl your commits and will show you, where the (first) build-breaker was introduced
+
+## What do we have to know?
+
+* A (healthy|good) commit from which git starts to look for a failure
+
+---
+
+# git bisect - Usage
+
+1. Mark the last known good commit: `git bisect start HEAD e35ca1d`
+.left[![](git2.png)]
+  * `HEAD` is where the build fails.
+  * `e35ca1d` ist the last known healthy commit. This can be a commit, a branch or a tag
+2. Let `git bisect` run the the build automatically: `git bisect run ../buildtest.sh`
+  * `buildtest.sh` runs the build or the part of the build, which breaks the build. The script should be outside the `git` repository.
+
+---
+
+# git bisect - Output
+
+.left[![](git3.png)]
+
+`git bisect` creates a temp-branch and succesfully blamed the bad commit
+
+.left[![](git4.png)]
+
+Now you know where the bug was introduced :)
+
+---
+
+# git blame - Who fucked up?
+
+Because it’s nice to know, who introduced the problem, `git` offers you all the tools to `blame` the commiter.
+
+`git blame` can tell you who made the last change for each LoC:
+
+.left[![](git5.png)]
+
+Now you know who will need to pay your next lunch :)
+
+---
+
+# Last but not least: git cherry-pick
+
+`git cherry-pick` does exactly the thing you think.
+
+Image you have fixed a bug in a branch, which was not merged to `master`. 
+
+You can simply run:
+.center[```
+git cherry-pick ${commit}
+```]
+
+and the commit will automatically be `merged` into your current branch. :)
+
+---
+class: center, middle, .left
+
+
+.center[
+#That’s all
+I blogged about this stuff. Check my Confluence-Page (https://projects.razorfish.de/confluence/pages/viewrecentblogposts.action?key=~janmuell)
+
+Everything is hosted on Github:
+* Presentation: http://janaurka.github.io/git-debug-presentiation
+* Repo: https://github.com/janaurka/git-debug-presentiation
+]
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
