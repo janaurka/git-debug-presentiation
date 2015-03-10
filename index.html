@@ -76,9 +76,11 @@ __(It’s actually a pretty neat Python powered static site generator with suppo
 .left[![](git2.png)]
   * `HEAD` is where the build fails.
   * `e35ca1d` ist the last known healthy commit. This can be a commit, a branch or a tag
-2. Let `git bisect` run the the build automatically: `git bisect run ../buildtest.sh`
-  * `buildtest.sh` runs the build or the part of the build, which breaks the build. The script should be outside the `git` repository.
+2. Let `git bisect` run the the build automatically: `git bisect run ../buildtestscript.sh`
+  * `buildtestscript.sh` runs the build or the part of the build, which breaks the build. The script should be outside the `git` repository.
 
+.left[![](git6.png)]
+(buildtestscript.sh only calls `python setup.py install` because I know that the error is there)
 ---
 
 # git bisect - Output
