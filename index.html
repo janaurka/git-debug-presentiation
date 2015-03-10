@@ -121,6 +121,24 @@ git cherry-pick ${commit}
 and the commit will automatically be `merged` into your current branch. :)
 
 ---
+
+# Surprise command: git whatchanged
+
+`git whatchanged` is able to tell you, what changed when.
+
+Example: You see that a change on ${DATE} made an unwandet change, but you have no clue what was changed - but you know the day it was changed.
+
+You can simply run:
+.center[```
+git whatchanged --since="9 day ago" --until="6 day ago" -p lib/aws.lib
+```]
+
+and `git` will tell you what changed during this period of time:
+
+.left[![](git7.png)]
+
+---
+
 class: center, middle, .left
 
 
