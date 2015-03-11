@@ -54,15 +54,15 @@ __(It’s actually a pretty neat Python powered static site generator with suppo
 
 ---
 
-# git bisect - Indroducion
+# git bisect - Introducion
 
 ## When to use?
 
-* When your build is not building anymore and you have no clue why
+* Your build is somehow broken and you have no clue why
 
 ## What does it?
 
-* git bisect can automatically crawl your commits and will show you, where the (first) build-breaker was introduced
+* `git bisect` can automatically crawl your commits and will show you, where the (first) build-breaker was introduced
 
 ## What do we have to know?
 
@@ -80,7 +80,7 @@ __(It’s actually a pretty neat Python powered static site generator with suppo
   * `buildtestscript.sh` runs the build or the part of the build, which breaks the build. The script should be outside the `git` repository.
 
 .left[![](git6.png)]
-(buildtestscript.sh only calls `python setup.py install` because I know that the error is there)
+(buildtestscript.sh only calls `python setup.py install` because this seems to break the build process)
 ---
 
 # git bisect - Output
@@ -122,7 +122,7 @@ and the commit will automatically be `merged` into your current branch. :)
 
 ---
 
-# Surprise command: git whatchanged
+# Wait. There is more: git whatchanged
 
 `git whatchanged` is able to tell you, what changed when.
 
